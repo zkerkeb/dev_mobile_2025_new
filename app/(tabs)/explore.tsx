@@ -1,6 +1,7 @@
 import { Image } from 'expo-image';
 import * as Notifications from 'expo-notifications';
 import { Alert, Button, Linking, Platform, StyleSheet, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { CounterDisplay } from '@/components/counter/CounterDisplay';
 import { ExternalLink } from '@/components/external-link';
@@ -17,30 +18,33 @@ Notifications.setNotificationHandler({
     shouldShowAlert: true,
     shouldPlaySound: true,
     shouldSetBadge: false,
+    shouldShowBanner: true,
+    shouldShowList: true,
   }),
 });
 
-// Fonction pour envoyer une notification locale
-async function sendNotification() {
-  // Demander la permission
-  const { status } = await Notifications.requestPermissionsAsync();
-  if (status !== 'granted') {
-    Alert.alert('Permission refusée', 'Active les notifications dans les réglages');
-    return;
+export default function TabTwoScreen() {
+  const { t } = useTranslation();
+
+  // Fonction pour envoyer une notification locale
+  async function sendNotification() {
+    // Demander la permission
+    const { status } = await Notifications.requestPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert(t('notifications.permissionDenied'), t('notifications.enableInSettings'));
+      return;
+    }
+
+    // Envoyer la notif
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: t('notifications.testTitle'),
+        body: t('notifications.testBody'),
+      },
+      trigger: null, // null = immédiat
+    });
   }
 
-
-  // Envoyer la notif
-  await Notifications.scheduleNotificationAsync({
-    content: {
-      title: 'Hello !',
-      body: 'Ceci est une notification de test',
-    },
-    trigger: null, // null = immédiat
-  });
-}
-
-export default function TabTwoScreen() {
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
@@ -59,13 +63,13 @@ export default function TabTwoScreen() {
           style={{
             fontFamily: Fonts.rounded,
           }}>
-          Explore
+          {t('explore.title')}
         </ThemedText>
       </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
+      <ThemedText>{t('explore.description')}</ThemedText>
 
 
-      <Button title="allez vers settings" onPress={()=>{
+      <Button title={t('explore.goToSettings')} onPress={()=>{
     Linking.openURL('devmobile2025new://')
 
       }}></Button>
@@ -77,68 +81,66 @@ export default function TabTwoScreen() {
         onPress={sendNotification}
       >
         <ThemedText style={{ color: 'white', fontWeight: 'bold' }}>
-          Envoyer une notification
+          {t('explore.sendNotification')}
         </ThemedText>
       </TouchableOpacity>
-      <Collapsible title="File-based routing">
+      <Collapsible title={t('explore.fileRouting.title')}>
         <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
+          {t('explore.fileRouting.description')}{' '}
+          <ThemedText type="defaultSemiBold">{t('explore.fileRouting.screen1')}</ThemedText> and{' '}
+          <ThemedText type="defaultSemiBold">{t('explore.fileRouting.screen2')}</ThemedText>
         </ThemedText>
         <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
+          The layout file in <ThemedText type="defaultSemiBold">{t('explore.fileRouting.layoutFile')}</ThemedText>{' '}
+          {t('explore.fileRouting.layoutDescription')}
         </ThemedText>
         <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
+          <ThemedText type="link">{t('explore.learnMore')}</ThemedText>
         </ExternalLink>
       </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
+      <Collapsible title={t('explore.platformSupport.title')}>
         <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
+          {t('explore.platformSupport.description')}{' '}
+          <ThemedText type="defaultSemiBold">{t('explore.platformSupport.key')}</ThemedText> in the terminal running this project.
         </ThemedText>
       </Collapsible>
-      <Collapsible title="Images">
+      <Collapsible title={t('explore.images.title')}>
         <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
+          {t('explore.images.description')} <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
+          <ThemedText type="defaultSemiBold">@3x</ThemedText> {t('explore.images.suffixes')}
         </ThemedText>
         <Image
           source={require('@/assets/images/react-logo.png')}
           style={{ width: 100, height: 100, alignSelf: 'center' }}
         />
         <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
+          <ThemedText type="link">{t('explore.learnMore')}</ThemedText>
         </ExternalLink>
       </Collapsible>
-      <Collapsible title="Light and dark mode components">
+      <Collapsible title={t('explore.darkMode.title')}>
         <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user&apos;s current color scheme is, and so you can adjust UI colors accordingly.
+          {t('explore.darkMode.description')}{' '}
+          <ThemedText type="defaultSemiBold">{t('explore.darkMode.hook')}</ThemedText> {t('explore.darkMode.hookDescription')}
         </ThemedText>
         <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
+          <ThemedText type="link">{t('explore.learnMore')}</ThemedText>
         </ExternalLink>
       </Collapsible>
-      <Collapsible title="Animations">
+      <Collapsible title={t('explore.animations.title')}>
         <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
+          {t('explore.animations.description')}{' '}
+          <ThemedText type="defaultSemiBold">{t('explore.animations.component')}</ThemedText> component uses
           the powerful{' '}
           <ThemedText type="defaultSemiBold" style={{ fontFamily: Fonts.mono }}>
-            react-native-reanimated
+            {t('explore.animations.library')}
           </ThemedText>{' '}
-          library to create a waving hand animation.
+          {t('explore.animations.libraryDescription')}
         </ThemedText>
         {Platform.select({
           ios: (
             <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
+              {t('explore.animations.parallax')} <ThemedText type="defaultSemiBold">{t('explore.animations.parallaxComponent')}</ThemedText>{' '}
+              {t('explore.animations.parallaxDescription')}
             </ThemedText>
           ),
         })}

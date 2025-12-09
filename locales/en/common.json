@@ -1,0 +1,107 @@
+{
+  "tabs": {
+    "home": "Home",
+    "explore": "Explore"
+  },
+  "home": {
+    "article": "Article"
+  },
+  "explore": {
+    "title": "Explore",
+    "description": "This app includes example code to help you get started.",
+    "goToSettings": "Go to settings",
+    "sendNotification": "Send a notification",
+    "fileRouting": {
+      "title": "File-based routing",
+      "description": "This app has two screens:",
+      "screen1": "app/(tabs)/index.tsx",
+      "screen2": "app/(tabs)/explore.tsx",
+      "layoutFile": "app/(tabs)/_layout.tsx",
+      "layoutDescription": "sets up the tab navigator."
+    },
+    "platformSupport": {
+      "title": "Android, iOS, and web support",
+      "description": "You can open this project on Android, iOS, and the web. To open the web version, press",
+      "key": "w"
+    },
+    "images": {
+      "title": "Images",
+      "description": "For static images, you can use",
+      "suffixes": "suffixes to provide files for different screen densities"
+    },
+    "darkMode": {
+      "title": "Light and dark mode components",
+      "description": "This template has light and dark mode support. The",
+      "hook": "useColorScheme()",
+      "hookDescription": "hook lets you inspect what the user's current color scheme is, and so you can adjust UI colors accordingly."
+    },
+    "animations": {
+      "title": "Animations",
+      "description": "This template includes an example of an animated component. The",
+      "component": "components/HelloWave.tsx",
+      "library": "react-native-reanimated",
+      "libraryDescription": "library to create the waving hand animation.",
+      "parallax": "The",
+      "parallaxComponent": "components/ParallaxScrollView.tsx",
+      "parallaxDescription": "component provides a parallax effect for the header image."
+    },
+    "learnMore": "Learn more"
+  },
+  "modal": {
+    "title": "This is a modal",
+    "goHome": "Go to home screen"
+  },
+  "counter": {
+    "greeting": "Hello",
+    "increment": "Increment"
+  },
+  "notifications": {
+    "permissionDenied": "Permission denied",
+    "enableInSettings": "Enable notifications in settings",
+    "testTitle": "Hello!",
+    "testBody": "This is a test notification",
+    "reminderTitle": "Hey! 👋",
+    "reminderBody": "Come finish your action!"
+  },
+  "article": {
+    "test": "Test"
+  },
+  "i18nDemo": {
+    "title": "i18n Demo",
+    "currentLanguage": "Current language: {{lang}}",
+    "changeLanguage": "Change language",
+    "simpleText": "This is a simple translated text.",
+    "interpolation": {
+      "title": "Interpolation",
+      "hello": "Hello {{name}}!",
+      "welcome": "Welcome to {{appName}}, {{userName}}!"
+    },
+    "plurals": {
+      "title": "Plurals",
+      "item_zero": "No items",
+      "item_one": "{{count}} item",
+      "item_other": "{{count}} items",
+      "message_zero": "You have no messages",
+      "message_one": "You have {{count}} message",
+      "message_other": "You have {{count}} messages"
+    },
+    "context": {
+      "title": "Context (gender)",
+      "friend_male": "He is my friend",
+      "friend_female": "She is my friend"
+    },
+    "nested": {
+      "title": "Nested keys",
+      "level1": {
+        "level2": {
+          "deep": "This is a deeply nested translation"
+        }
+      }
+    },
+    "formatting": {
+      "title": "Number formatting",
+      "price": "Price: {{value, number}}",
+      "date": "Today is {{date}}"
+    }
+  }
+}

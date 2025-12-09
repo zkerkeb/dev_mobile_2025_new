@@ -1,0 +1,107 @@
+{
+  "tabs": {
+    "home": "Accueil",
+    "explore": "Explorer"
+  },
+  "home": {
+    "article": "Article"
+  },
+  "explore": {
+    "title": "Explorer",
+    "description": "Cette application inclut des exemples de code pour vous aider à démarrer.",
+    "goToSettings": "Aller aux paramètres",
+    "sendNotification": "Envoyer une notification",
+    "fileRouting": {
+      "title": "Routage basé sur les fichiers",
+      "description": "Cette application a deux écrans :",
+      "screen1": "app/(tabs)/index.tsx",
+      "screen2": "app/(tabs)/explore.tsx",
+      "layoutFile": "app/(tabs)/_layout.tsx",
+      "layoutDescription": "configure le navigateur à onglets."
+    },
+    "platformSupport": {
+      "title": "Support Android, iOS et web",
+      "description": "Vous pouvez ouvrir ce projet sur Android, iOS et le web. Pour ouvrir la version web, appuyez sur",
+      "key": "w"
+    },
+    "images": {
+      "title": "Images",
+      "description": "Pour les images statiques, vous pouvez utiliser les suffixes",
+      "suffixes": "pour fournir des fichiers pour différentes densités d'écran"
+    },
+    "darkMode": {
+      "title": "Composants mode clair et sombre",
+      "description": "Ce template supporte les modes clair et sombre. Le hook",
+      "hook": "useColorScheme()",
+      "hookDescription": "vous permet d'inspecter le schéma de couleurs actuel de l'utilisateur, et ainsi d'ajuster les couleurs de l'interface en conséquence."
+    },
+    "animations": {
+      "title": "Animations",
+      "description": "Ce template inclut un exemple de composant animé. Le composant",
+      "component": "components/HelloWave.tsx",
+      "library": "react-native-reanimated",
+      "libraryDescription": "pour créer l'animation de la main qui salue.",
+      "parallax": "Le composant",
+      "parallaxComponent": "components/ParallaxScrollView.tsx",
+      "parallaxDescription": "fournit un effet de parallaxe pour l'image d'en-tête."
+    },
+    "learnMore": "En savoir plus"
+  },
+  "modal": {
+    "title": "Ceci est une modale",
+    "goHome": "Retour à l'accueil"
+  },
+  "counter": {
+    "greeting": "Coucou",
+    "increment": "Incrémenter"
+  },
+  "notifications": {
+    "permissionDenied": "Permission refusée",
+    "enableInSettings": "Active les notifications dans les réglages",
+    "testTitle": "Hello !",
+    "testBody": "Ceci est une notification de test",
+    "reminderTitle": "Hey ! 👋",
+    "reminderBody": "Viens finir ton action !"
+  },
+  "article": {
+    "test": "Test"
+  },
+  "i18nDemo": {
+    "title": "Demo i18n",
+    "currentLanguage": "Langue actuelle : {{lang}}",
+    "changeLanguage": "Changer de langue",
+    "simpleText": "Ceci est un texte traduit simple.",
+    "interpolation": {
+      "title": "Interpolation",
+      "hello": "Bonjour {{name}} !",
+      "welcome": "Bienvenue sur {{appName}}, {{userName}} !"
+    },
+    "plurals": {
+      "title": "Pluriels",
+      "item_zero": "Aucun article",
+      "item_one": "{{count}} article",
+      "item_other": "{{count}} articles",
+      "message_zero": "Vous n'avez aucun message",
+      "message_one": "Vous avez {{count}} message",
+      "message_other": "Vous avez {{count}} messages"
+    },
+    "context": {
+      "title": "Contexte (genre)",
+      "friend_male": "C'est mon ami",
+      "friend_female": "C'est mon amie"
+    },
+    "nested": {
+      "title": "Clés imbriquées",
+      "level1": {
+        "level2": {
+          "deep": "Ceci est une traduction profondément imbriquée"
+        }
+      }
+    },
+    "formatting": {
+      "title": "Formatage des nombres",
+      "price": "Prix : {{value, number}}",
+      "date": "Aujourd'hui nous sommes le {{date}}"
+    }
+  }
+}

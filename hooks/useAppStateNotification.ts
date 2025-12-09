@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { AppState, AppStateStatus } from 'react-native';
 import * as Notifications from 'expo-notifications';
+import { useTranslation } from 'react-i18next';
 
 // Configure le comportement des notifications quand l'app est au premier plan
 Notifications.setNotificationHandler({
@@ -8,12 +9,15 @@ Notifications.setNotificationHandler({
     shouldShowAlert: true,
     shouldPlaySound: true,
     shouldSetBadge: false,
+    shouldShowBanner: true,
+    shouldShowList: true,
   }),
 });
 
 export function useAppStateNotification() {
   const appState = useRef(AppState.currentState);
   const notificationId = useRef<string | null>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Demande les permissions au montage
@@ -31,8 +35,8 @@ export function useAppStateNotification() {
         // Programme une notification dans 5 secondes
         notificationId.current = await Notifications.scheduleNotificationAsync({
           content: {
-            title: 'Hey ! 👋',
-            body: 'Viens finir ton action !',
+            title: t('notifications.reminderTitle'),
+            body: t('notifications.reminderBody'),
           },
           trigger: {
             type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
@@ -59,5 +63,5 @@ export function useAppStateNotification() {
         Notifications.cancelScheduledNotificationAsync(notificationId.current);
       }
     };
-  }, []);
+  }, [t]);
 }
