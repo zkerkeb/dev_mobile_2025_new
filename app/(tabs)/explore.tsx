@@ -1,13 +1,44 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import * as Notifications from 'expo-notifications';
+import { Alert, Button, Linking, Platform, StyleSheet, TouchableOpacity } from 'react-native';
 
-import { Collapsible } from '@/components/ui/collapsible';
+import { CounterDisplay } from '@/components/counter/CounterDisplay';
 import { ExternalLink } from '@/components/external-link';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { Collapsible } from '@/components/ui/collapsible';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Fonts } from '@/constants/theme';
+
+// Configure comment les notifs s'affichent quand l'app est ouverte
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
+
+// Fonction pour envoyer une notification locale
+async function sendNotification() {
+  // Demander la permission
+  const { status } = await Notifications.requestPermissionsAsync();
+  if (status !== 'granted') {
+    Alert.alert('Permission refusée', 'Active les notifications dans les réglages');
+    return;
+  }
+
+
+  // Envoyer la notif
+  await Notifications.scheduleNotificationAsync({
+    content: {
+      title: 'Hello !',
+      body: 'Ceci est une notification de test',
+    },
+    trigger: null, // null = immédiat
+  });
+}
 
 export default function TabTwoScreen() {
   return (
@@ -21,6 +52,7 @@ export default function TabTwoScreen() {
           style={styles.headerImage}
         />
       }>
+        <CounterDisplay/>
       <ThemedView style={styles.titleContainer}>
         <ThemedText
           type="title"
@@ -31,6 +63,23 @@ export default function TabTwoScreen() {
         </ThemedText>
       </ThemedView>
       <ThemedText>This app includes example code to help you get started.</ThemedText>
+
+
+      <Button title="allez vers settings" onPress={()=>{
+    Linking.openURL('devmobile2025new://')
+
+      }}></Button>
+      {/* Bouton Notification */}
+
+
+      <TouchableOpacity
+        style={styles.notifButton}
+        onPress={sendNotification}
+      >
+        <ThemedText style={{ color: 'white', fontWeight: 'bold' }}>
+          Envoyer une notification
+        </ThemedText>
+      </TouchableOpacity>
       <Collapsible title="File-based routing">
         <ThemedText>
           This app has two screens:{' '}
@@ -108,5 +157,12 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     gap: 8,
+  },
+  notifButton: {
+    backgroundColor: '#007AFF',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginVertical: 10,
   },
 });
